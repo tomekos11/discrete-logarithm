@@ -1,46 +1,3 @@
-<script setup>
-const siteName = 'DLog Visualizer'
-const title = 'Logarytm dyskretny (DLP) — Baby-step Giant-step'
-const description = 'Edukacyjne narzędzie do obliczania logarytmu dyskretnego (DLP) z wizualizacją krok po kroku algorytmu Baby-step Giant-step.'
-
-const route = useRoute()
-const canonicalPath = computed(() => (route.path || '/'))
-
-useHead({
-  meta: [
-    { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-    { name: 'description', content: description },
-    { name: 'application-name', content: siteName },
-    { name: 'robots', content: 'index,follow,max-image-preview:large' },
-    { name: 'theme-color', content: '#00DC82' }
-  ],
-  link: [
-    { rel: 'icon', href: '/favicon.svg' },
-    // Relative canonical (works in dev + static hosting without knowing base URL)
-    { rel: 'canonical', href: canonicalPath.value }
-  ],
-  htmlAttrs: {
-    lang: 'pl'
-  }
-})
-
-useSeoMeta({
-  title,
-  description,
-  ogSiteName: siteName,
-  ogTitle: title,
-  ogDescription: description,
-  ogType: 'website',
-  ogLocale: 'pl_PL',
-  ogImage: '/og.png',
-  ogImageAlt: 'Logarytm dyskretny Baby-step Giant-step (wizualizacja)',
-  twitterImage: '/og.png',
-  twitterTitle: title,
-  twitterDescription: description,
-  twitterCard: 'summary_large_image'
-})
-</script>
-
 <template>
   <UApp>
     <UHeader>
@@ -74,6 +31,7 @@ useSeoMeta({
     </UHeader>
 
     <UMain>
+      <Analytics mode="production" />
       <NuxtPage />
     </UMain>
 
@@ -144,3 +102,48 @@ useSeoMeta({
     </UFooter>
   </UApp>
 </template>
+
+<script setup lang="ts">
+import { Analytics } from '@vercel/analytics/nuxt'
+
+const siteName = 'DLog Visualizer'
+const title = 'Logarytm dyskretny (DLP) — Baby-step Giant-step'
+const description = 'Edukacyjne narzędzie do obliczania logarytmu dyskretnego (DLP) z wizualizacją krok po kroku algorytmu Baby-step Giant-step.'
+
+const route = useRoute()
+const canonicalPath = computed(() => (route.path || '/'))
+
+useHead({
+  meta: [
+    { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+    { name: 'description', content: description },
+    { name: 'application-name', content: siteName },
+    { name: 'robots', content: 'index,follow,max-image-preview:large' },
+    { name: 'theme-color', content: '#00DC82' }
+  ],
+  link: [
+    { rel: 'icon', href: '/favicon.svg' },
+    // Relative canonical (works in dev + static hosting without knowing base URL)
+    { rel: 'canonical', href: canonicalPath.value }
+  ],
+  htmlAttrs: {
+    lang: 'pl'
+  }
+})
+
+useSeoMeta({
+  title,
+  description,
+  ogSiteName: siteName,
+  ogTitle: title,
+  ogDescription: description,
+  ogType: 'website',
+  ogLocale: 'pl_PL',
+  ogImage: '/og.png',
+  ogImageAlt: 'Logarytm dyskretny Baby-step Giant-step (wizualizacja)',
+  twitterImage: '/og.png',
+  twitterTitle: title,
+  twitterDescription: description,
+  twitterCard: 'summary_large_image'
+})
+</script>

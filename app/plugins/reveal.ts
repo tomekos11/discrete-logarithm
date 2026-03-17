@@ -1,16 +1,19 @@
 export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.directive('reveal', {
+    getSSRProps() {
+      return {}
+    },
     mounted(el, binding) {
-      const opts = (binding.value && typeof binding.value === 'object')
-        ? binding.value as { threshold?: number, rootMargin?: string, once?: boolean }
-        : {}
-
       el.classList.add('revealOnEnter')
 
       if (typeof window === 'undefined' || !('IntersectionObserver' in window)) {
         el.classList.add('is-visible')
         return
       }
+
+      const opts = (binding.value && typeof binding.value === 'object')
+        ? binding.value as { threshold?: number, rootMargin?: string, once?: boolean }
+        : {}
 
       const threshold = opts.threshold ?? 0.15
       const rootMargin = opts.rootMargin ?? '0px 0px -10% 0px'
@@ -28,8 +31,6 @@ export default defineNuxtPlugin((nuxtApp) => {
       }, { threshold, rootMargin })
 
       io.observe(el)
-
-      // store for cleanup
       ;(el as any).__revealIo = io
     },
     unmounted(el) {
