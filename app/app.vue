@@ -31,7 +31,6 @@
     </UHeader>
 
     <UMain>
-      <Analytics mode="production" />
       <NuxtPage />
     </UMain>
 
@@ -104,8 +103,6 @@
 </template>
 
 <script setup lang="ts">
-import Analytics from '@vercel/analytics/nuxt'
-
 const siteName = 'DLog Visualizer'
 const title = 'Logarytm dyskretny (DLP) — Baby-step Giant-step'
 const description = 'Edukacyjne narzędzie do obliczania logarytmu dyskretnego (DLP) z wizualizacją krok po kroku algorytmu Baby-step Giant-step.'
