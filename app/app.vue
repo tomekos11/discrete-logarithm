@@ -104,7 +104,7 @@
 </template>
 
 <script setup lang="ts">
-import { Analytics } from '@vercel/analytics/nuxt'
+import Analytics from '@vercel/analytics/nuxt'
 
 const siteName = 'DLog Visualizer'
 const title = 'Logarytm dyskretny (DLP) — Baby-step Giant-step'
