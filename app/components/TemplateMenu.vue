@@ -1,0 +1,32 @@
+<template>
+  <nav class="hidden items-center gap-1 md:flex">
+    <UButton
+      to="/#kalkulator"
+      variant="ghost"
+      color="neutral"
+      icon="i-lucide-calculator"
+      label="Kalkulator"
+    />
+    <UButton
+      to="/#teoria"
+      variant="ghost"
+      color="neutral"
+      icon="i-lucide-book-open"
+      label="Teoria"
+    />
+    <UButton
+      to="/#algorytm"
+      variant="ghost"
+      color="neutral"
+      icon="i-lucide-route"
+      label="Algorytm"
+    />
+    <UButton
+      to="/#faq"
+      variant="ghost"
+      color="neutral"
+      icon="i-lucide-circle-help"
+      label="FAQ"
+    />
+  </nav>
+</template>

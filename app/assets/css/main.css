@@ -1,0 +1,112 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+@import "katex/dist/katex.min.css";
+@import url("https://fonts.googleapis.com/css2?family=STIX+Two+Math&display=swap");
+
+@theme static {
+  --font-sans: 'Public Sans', sans-serif;
+  --font-math: 'STIX Two Math', 'Cambria Math', 'STIXGeneral', 'DejaVu Serif', serif;
+
+  --color-green-50: #EFFDF5;
+  --color-green-100: #D9FBE8;
+  --color-green-200: #B3F5D1;
+  --color-green-300: #75EDAE;
+  --color-green-400: #00DC82;
+  --color-green-500: #00C16A;
+  --color-green-600: #00A155;
+  --color-green-700: #007F45;
+  --color-green-800: #016538;
+  --color-green-900: #0A5331;
+  --color-green-950: #052E16;
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-gutter: stable both-edges;
+  overflow-y: scroll;
+  overflow-x: clip;
+}
+
+body {
+  min-height: 100vh;
+  overflow-y: scroll;
+  overflow-x: clip;
+}
+
+#__nuxt {
+  min-height: 100vh;
+}
+
+/* Subtle transitions between page sections */
+.sectionBackplate {
+  position: relative;
+  overflow: clip;
+  isolation: isolate;
+}
+
+.sectionBackplate::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.55;
+  background:
+    radial-gradient(1200px 520px at 15% 10%, color-mix(in oklab, var(--ui-primary) 14%, transparent), transparent 65%),
+    radial-gradient(1200px 520px at 85% 90%, color-mix(in oklab, var(--ui-primary) 10%, transparent), transparent 68%),
+    linear-gradient(180deg, color-mix(in oklab, var(--ui-bg) 98%, var(--ui-primary) 2%), transparent 35%, color-mix(in oklab, var(--ui-bg) 98%, var(--ui-primary) 2%));
+  filter: blur(2px);
+  transform: scale(1.02);
+}
+
+.sectionBackplate--alt::before {
+  opacity: 0.55;
+  background:
+    radial-gradient(1200px 520px at 85% 12%, color-mix(in oklab, var(--ui-primary) 13%, transparent), transparent 66%),
+    radial-gradient(1200px 520px at 10% 88%, color-mix(in oklab, var(--ui-primary) 10%, transparent), transparent 70%),
+    linear-gradient(180deg, color-mix(in oklab, var(--ui-bg) 98%, var(--ui-primary) 2%), transparent 35%, color-mix(in oklab, var(--ui-bg) 98%, var(--ui-primary) 2%));
+  filter: blur(2px);
+  transform: scale(1.02);
+}
+
+#kalkulator,
+#teoria,
+#algorytm,
+#faq {
+  scroll-margin-top: 96px;
+}
+
+.math {
+  font-family: var(--font-math);
+  font-variant-numeric: lining-nums;
+  letter-spacing: 0.01em;
+}
+
+.mathBlock {
+  font-family: var(--font-math);
+  font-variant-numeric: lining-nums;
+  letter-spacing: 0.01em;
+}
+
+.katex {
+  color: inherit;
+}
+
+.revealOnEnter {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 520ms ease, transform 520ms ease;
+  will-change: opacity, transform;
+}
+
+.revealOnEnter.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .revealOnEnter {
+    transition: none;
+    transform: none;
+    opacity: 1;
+  }
+}
