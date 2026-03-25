@@ -1,28 +1,25 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import { env } from 'node:process'
+
 export default defineNuxtConfig({
   modules: [
+    'nuxt-security',
     '@nuxt/eslint',
     '@nuxt/ui',
     '@vercel/analytics',
     '@nuxtjs/sitemap'
   ],
 
-  site: {
-    url: process.env.NUXT_SITE_URL || 'https://discrete-logarithm.vercel.app',
-    name: 'DLog Visualizer'
-  },
-
-  sitemap: {
-    strictNuxtContentPaths: true,
-    // Only static pages; build-time sitemap, no runtime
-    zeroRuntime: true
-  },
-
   devtools: {
     enabled: true
   },
 
   css: ['~/assets/css/main.css'],
+
+  site: {
+    url: env.NUXT_SITE_URL || 'https://discrete-logarithm.vercel.app',
+    name: 'DLog Visualizer'
+  },
 
   routeRules: {
     '/': { prerender: true },
@@ -39,5 +36,29 @@ export default defineNuxtConfig({
         braceStyle: '1tbs'
       }
     }
+  },
+
+  // OWASP / Helmet-like nagłówki + CSP z nuxt-security. W prod dokładamy
+  // connect-src (telemetria Vercel Analytics / skrypt dev).
+  security: {
+    headers: {
+      contentSecurityPolicy: {
+        ...(env.NODE_ENV === 'production'
+          ? {
+              'connect-src': [
+                '\'self\'',
+                'https://vitals.vercel-insights.com',
+                'https://va.vercel-scripts.com'
+              ]
+            }
+          : {})
+      }
+    }
+  },
+
+  sitemap: {
+    strictNuxtContentPaths: true,
+    // Only static pages; build-time sitemap, no runtime
+    zeroRuntime: true
   }
 })

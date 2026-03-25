@@ -64,17 +64,12 @@ onBeforeUnmount(() => {
 
 <template>
   <span class="typeWrap inline-flex max-w-full items-center font-semibold tracking-tight text-primary">
-    <!-- reserve full width to prevent layout shifts -->
     <span
-      class="typeReserve tabular-nums"
-      aria-hidden="true"
-    >{{ text }}</span>
-    <span
-      class="typeOverlay tabular-nums"
+      class="typeOverlay tabular-nums !text-primary"
       aria-live="off"
-    >{{ displayed }}</span>
+    >{{ displayed || ' ' }}</span>
     <span
-      class="typeCaret ml-0.5 inline-block h-[1.1em] w-px bg-primary"
+      class="typeCaret ml-0.5 inline-block h-[1.1em] w-px !bg-primary"
       aria-hidden="true"
     />
   </span>
@@ -82,20 +77,10 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .typeWrap {
-  position: relative;
   max-width: 100%;
 }
 
-.typeReserve {
-  opacity: 0;
-  pointer-events: none;
-}
-
 .typeOverlay {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
   white-space: pre;
   max-width: 100%;
   overflow: hidden;
@@ -120,10 +105,9 @@ onBeforeUnmount(() => {
 
 @media (max-width: 640px) {
   .typeWrap {
-    width: min(100%, 16ch);
+    max-width: min(100%, 16ch);
   }
 
-  .typeReserve,
   .typeOverlay {
     white-space: normal;
     overflow-wrap: anywhere;

@@ -18,6 +18,7 @@
     "@vercel/analytics": "^2.0.1",
     "katex": "^0.16.22",
     "nuxt": "^4.4.2",
+    "nuxt-security": "^2.5.1",
     "tailwindcss": "^4.2.1"
   },
   "devDependencies": {
