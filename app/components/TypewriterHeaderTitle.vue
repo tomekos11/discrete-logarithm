@@ -63,17 +63,27 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <span class="typeWrap inline-flex items-center font-semibold tracking-tight text-primary">
+  <span class="typeWrap inline-flex max-w-full items-center font-semibold tracking-tight text-primary">
     <!-- reserve full width to prevent layout shifts -->
-    <span class="typeReserve tabular-nums" aria-hidden="true">{{ text }}</span>
-    <span class="typeOverlay tabular-nums" aria-live="off">{{ displayed }}</span>
-    <span class="typeCaret ml-0.5 inline-block h-[1.1em] w-px bg-primary" aria-hidden="true" />
+    <span
+      class="typeReserve tabular-nums"
+      aria-hidden="true"
+    >{{ text }}</span>
+    <span
+      class="typeOverlay tabular-nums"
+      aria-live="off"
+    >{{ displayed }}</span>
+    <span
+      class="typeCaret ml-0.5 inline-block h-[1.1em] w-px bg-primary"
+      aria-hidden="true"
+    />
   </span>
 </template>
 
 <style scoped>
 .typeWrap {
   position: relative;
+  max-width: 100%;
 }
 
 .typeReserve {
@@ -85,7 +95,11 @@ onBeforeUnmount(() => {
   position: absolute;
   left: 0;
   top: 0;
+  width: 100%;
   white-space: pre;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .typeCaret {
@@ -103,5 +117,21 @@ onBeforeUnmount(() => {
     animation: none;
   }
 }
-</style>
 
+@media (max-width: 640px) {
+  .typeWrap {
+    width: min(100%, 16ch);
+  }
+
+  .typeReserve,
+  .typeOverlay {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .typeOverlay {
+    overflow: visible;
+    text-overflow: clip;
+  }
+}
+</style>

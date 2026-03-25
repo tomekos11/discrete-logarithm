@@ -11,6 +11,7 @@ const items = [
   },
   {
     label: 'Jak działa Baby-step Giant-step w jednym zdaniu?',
+    slot: 'bsgsOneSentence',
     content:
       'Dzieli szukany wykładnik na x = i·m + j, buduje tabelę G^j (baby steps), a następnie iteruje po B·(G^(-m))^i (giant steps), aż znajdzie wspólną wartość.'
   },
@@ -83,25 +84,44 @@ useHead({
       </div>
     </template>
 
-    <div class="w-xl min-w-0">
+    <div class="w-full min-w-0 max-w-full">
       <UAccordion
         :items="items"
-        class="w-full min-w-0"
+        class="w-full min-w-0 max-w-full"
         :unmount-on-hide="false"
         :ui="{
-          item: 'w-full min-w-0',
-          trigger: 'w-full min-w-0',
-          content: 'w-full min-w-0 whitespace-normal break-words'
+          item: 'w-full min-w-0 max-w-full',
+          trigger: 'w-full min-w-0 max-w-full',
+          label: 'min-w-0',
+          content: 'w-full min-w-0 max-w-full whitespace-normal [overflow-wrap:anywhere]',
+          body: 'faq-answer text-sm text-muted leading-7 min-w-0 max-w-full pb-3.5'
         }"
       >
         <template #dlpDefinition>
-          <p class="text-sm text-muted leading-7">
+          <p class="faq-answer text-sm text-muted leading-7">
             To zadanie znalezienia <MathTex tex="x" /> spełniającego równanie
             <MathTex tex="G^{x} \equiv B \pmod{P}" />
             w pewnej grupie (najczęściej modulo liczby pierwszej). To „odwrotność” potęgowania modularnego.
+          </p>
+        </template>
+        <template #bsgsOneSentence>
+          <p class="faq-answer text-sm text-muted leading-7">
+            Dzieli szukany wykładnik na <MathTex tex="x=i\cdot m + j" />, buduje tabelę
+            <MathTex tex="G^{j}" /> (baby steps), a następnie iteruje po
+            <MathTex tex="B\cdot (G^{-m})^{i}" /> (giant steps), aż znajdzie wspólną wartość.
           </p>
         </template>
       </UAccordion>
     </div>
   </UCard>
 </template>
+
+<style scoped>
+/* Inline KaTeX uses nowrap — cap width so lines stay in the viewport (scroll inside formula if needed). */
+.faq-answer :deep(.katexWrap) {
+  display: inline-block;
+  max-width: 100%;
+  overflow-x: auto;
+  vertical-align: text-bottom;
+}
+</style>

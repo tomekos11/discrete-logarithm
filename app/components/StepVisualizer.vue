@@ -15,15 +15,21 @@ const maxStep = computed(() => {
   return 4
 })
 
-const stepTitles = [
-  'Parametry i m',
-  'Baby steps (G^j mod P)',
-  'Giant steps (B·(G^(-m))^i mod P)',
-  'Dopasowanie',
-  'Wynik'
-] as const
+type StepTitle = {
+  label: string
+  tex?: string
+}
+
+const stepTitles: StepTitle[] = [
+  { label: 'Parametry i ', tex: 'm' },
+  { label: 'Baby steps', tex: 'G^{j} \\bmod P' },
+  { label: 'Giant steps', tex: 'B\\cdot (G^{-m})^{i} \\bmod P' },
+  { label: 'Dopasowanie' },
+  { label: 'Wynik' }
+]
 
 const current = computed(() => Math.min(Math.max(props.activeStep, 0), maxStep.value))
+const currentStepTitle = computed<StepTitle>(() => stepTitles[current.value] ?? { label: '' })
 
 function setStep(n: number) {
   emit('update:activeStep', Math.min(Math.max(n, 0), maxStep.value))
@@ -37,8 +43,9 @@ function setStep(n: number) {
         <UBadge color="primary" variant="subtle">
           Krok {{ current + 1 }} / {{ maxStep + 1 }}
         </UBadge>
-        <span class="text-sm font-medium">
-          {{ stepTitles[current] }}
+        <span class="text-sm font-medium inline-flex items-center gap-1">
+          <span>{{ currentStepTitle.label }}</span>
+          <MathTex v-if="currentStepTitle.tex" :tex="currentStepTitle.tex" />
         </span>
       </div>
 
@@ -80,7 +87,7 @@ function setStep(n: number) {
           <div class="grid grid-cols-1 gap-3 md:grid-cols-3">
             <UCard class="p-4">
               <div class="text-xs text-muted">
-                m = ⌈√(P−1)⌉
+                <MathTex tex="m=\lceil\sqrt{P-1}\rceil" />
               </div>
               <div class="mt-1 font-mono text-lg">
                 {{ result.m.toString() }}

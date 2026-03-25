@@ -11,11 +11,11 @@
       }]"
     >
       <template #title>
-        <span class="inline-flex flex-col items-start leading-tight">
-          <span class="whitespace-nowrap">
+        <span class="inline-flex w-full max-w-full flex-col items-start leading-tight">
+          <span class="max-w-full text-[0.92em] whitespace-normal wrap-break-word sm:text-inherit sm:whitespace-nowrap">
             Logarytm dyskretny
           </span>
-          <TypewriterHeaderTitle class="whitespace-nowrap text-primary" />
+          <TypewriterHeaderTitle class="w-full max-w-full text-primary text-[0.82em] sm:text-inherit" />
         </span>
       </template>
     </UPageHero>

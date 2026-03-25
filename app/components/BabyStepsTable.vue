@@ -13,8 +13,11 @@ function format(n: bigint) {
 <template>
   <div class="space-y-3">
     <div class="flex flex-wrap items-center justify-between gap-2">
-      <p class="text-sm text-muted">
-        Prekomputacja wartości <span class="font-mono">G^j mod P</span> dla <span class="font-mono">j = 0..m−1</span>.
+      <p class="text-sm text-muted inline-flex items-center gap-1 flex-wrap">
+        <span>Prekomputacja wartości</span>
+        <MathTex tex="G^{j}\bmod P" />
+        <span>dla</span>
+        <MathTex tex="j=0,\ldots,m-1" />
       </p>
       <UBadge color="neutral" variant="subtle">
         {{ rows.length }} wierszy
@@ -29,7 +32,7 @@ function format(n: bigint) {
               j
             </th>
             <th class="px-3 py-2 text-left font-semibold">
-              G^j mod P
+              <MathTex tex="G^{j}\bmod P" />
             </th>
           </tr>
         </thead>

@@ -1,6 +1,10 @@
 <template>
   <UApp>
-    <UHeader>
+    <UHeader
+      v-model:open="mobileNavOpen"
+      mode="slideover"
+      class="sticky top-0 z-40 border-b border-default/60 bg-background/80 backdrop-blur supports-backdrop-filter:bg-background/70"
+    >
       <template #left>
         <NuxtLink
           to="/"
@@ -18,15 +22,88 @@
       </template>
 
       <template #right>
-        <UColorModeButton />
+        <div class="flex items-center gap-1">
+          <UColorModeButton />
 
-        <UButton
-          to="/#kalkulator"
-          icon="i-lucide-play"
-          aria-label="Przejdź do kalkulatora"
-          color="neutral"
-          variant="ghost"
-        />
+          <UButton
+            to="/#kalkulator"
+            icon="i-lucide-play"
+            aria-label="Przejdź do kalkulatora"
+            color="neutral"
+            variant="ghost"
+            class="hidden sm:inline-flex"
+          />
+        </div>
+      </template>
+
+      <template #body>
+        <nav class="flex h-full flex-col gap-2 p-2">
+          <NuxtLink
+            to="/"
+            class="flex flex-col items-start rounded-md px-3 py-2 leading-tight hover:bg-elevated"
+            @click="mobileNavOpen = false"
+          >
+            <span class="whitespace-nowrap text-sm font-semibold tracking-tight text-foreground">
+              DLOG Visualizer
+            </span>
+            <span class="whitespace-nowrap text-sm font-semibold tracking-tight text-primary">
+              Baby-step Giant-step
+            </span>
+          </NuxtLink>
+
+          <USeparator class="my-1" />
+
+          <UButton
+            to="/#kalkulator"
+            color="neutral"
+            variant="ghost"
+            icon="i-lucide-calculator"
+            label="Kalkulator"
+            class="justify-start"
+            @click="mobileNavOpen = false"
+          />
+          <UButton
+            to="/#teoria"
+            color="neutral"
+            variant="ghost"
+            icon="i-lucide-book-open"
+            label="Teoria"
+            class="justify-start"
+            @click="mobileNavOpen = false"
+          />
+          <UButton
+            to="/#algorytm"
+            color="neutral"
+            variant="ghost"
+            icon="i-lucide-route"
+            label="Algorytm"
+            class="justify-start"
+            @click="mobileNavOpen = false"
+          />
+          <UButton
+            to="/#faq"
+            color="neutral"
+            variant="ghost"
+            icon="i-lucide-circle-help"
+            label="FAQ"
+            class="justify-start"
+            @click="mobileNavOpen = false"
+          />
+
+          <USeparator class="mt-auto mb-1" />
+
+          <div class="px-3 py-2 text-sm text-muted">
+            <span class="whitespace-nowrap">
+              Strona:
+              <a
+                href="https://cv.tomasz-slapinski.pl"
+                rel="nofollow"
+                target="_blank"
+                class="underline decoration-dotted underline-offset-4 hover:text-foreground"
+              >Tomasz Słapiński</a>
+            </span>
+          </div>
+        </nav>
       </template>
     </UHeader>
 
@@ -60,49 +137,13 @@
           </span>
         </div>
       </template>
-
-      <template #right>
-        <div class="flex items-center gap-1">
-          <UButton
-            to="/#kalkulator"
-            icon="i-lucide-calculator"
-            aria-label="Kalkulator"
-            color="neutral"
-            variant="ghost"
-          />
-          <UButton
-            to="/#teoria"
-            icon="i-lucide-book-open"
-            aria-label="Teoria"
-            color="neutral"
-            variant="ghost"
-          />
-          <UButton
-            to="/#algorytm"
-            icon="i-lucide-route"
-            aria-label="Baby-step Giant-step"
-            color="neutral"
-            variant="ghost"
-          />
-          <UButton
-            to="/#faq"
-            icon="i-lucide-circle-help"
-            aria-label="FAQ"
-            color="neutral"
-            variant="ghost"
-          />
-
-          <AppLogo
-            class="ml-2 h-5 w-auto text-muted"
-            aria-hidden="true"
-          />
-        </div>
-      </template>
     </UFooter>
   </UApp>
 </template>
 
 <script setup lang="ts">
+const mobileNavOpen = ref(false)
+
 const siteName = 'DLog Visualizer'
 const title = 'Logarytm dyskretny (DLP) — Baby-step Giant-step'
 const description = 'Edukacyjne narzędzie do obliczania logarytmu dyskretnego (DLP) z wizualizacją krok po kroku algorytmu Baby-step Giant-step.'

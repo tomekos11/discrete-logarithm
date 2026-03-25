@@ -37,9 +37,13 @@
               Baby steps
             </p>
           </div>
-          <p class="text-muted">
-            Liczymy i zapisujemy tabelę wartości <span class="math">G^j mod P</span> dla
-            <span class="math">j = 0..m−1</span>. To koszt pamięci \(O(√n)\).
+          <p class="text-muted inline-flex items-center gap-1 flex-wrap">
+            <span>Liczymy i zapisujemy tabelę wartości</span>
+            <MathTex tex="G^{j}\bmod P" />
+            <span>dla</span>
+            <MathTex tex="j=0,\ldots,m-1" />.
+            <span>To koszt pamięci</span>
+            <MathTex tex="O(\sqrt{n})" />.
           </p>
         </UCard>
 
