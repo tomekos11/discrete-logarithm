@@ -23,7 +23,8 @@ export default defineNuxtConfig({
     url:
       env.NUXT_SITE_URL
       || 'https://discrete-logarithm.tomasz-slapinski.pl',
-    name: 'DLog Visualizer'
+    name: 'DLog Visualizer',
+    trailingSlash: false
   },
 
   routeRules: {
