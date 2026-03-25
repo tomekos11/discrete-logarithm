@@ -16,8 +16,13 @@ export default defineNuxtConfig({
 
   css: ['~/assets/css/main.css'],
 
+  // Kanoniczny URL dla SEO / sitemap. Na Vercelu ustaw NUXT_SITE_URL na tę samą
+  // domenę co w przeglądarce (np. https://discrete-logarithm.tomasz-slapinski.pl),
+  // inaczej przy braku zmiennej użyty zostanie fallback poniżej.
   site: {
-    url: env.NUXT_SITE_URL || 'https://discrete-logarithm.vercel.app',
+    url:
+      env.NUXT_SITE_URL
+      || 'https://discrete-logarithm.tomasz-slapinski.pl',
     name: 'DLog Visualizer'
   },
 
