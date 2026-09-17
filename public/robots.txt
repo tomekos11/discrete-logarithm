@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://discrete-logarithm.tomasz-slapinski.pl/sitemap.xml

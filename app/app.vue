@@ -41,7 +41,7 @@
           <NuxtLink
             to="/"
             class="flex flex-col items-start rounded-md px-3 py-2 leading-tight hover:bg-elevated"
-            @click="mobileNavOpen = false"
+            @click="() => { mobileNavOpen = false }"
           >
             <span class="whitespace-nowrap text-sm font-semibold tracking-tight text-foreground">
               DLOG Visualizer
@@ -60,7 +60,7 @@
             icon="i-lucide-calculator"
             label="Kalkulator"
             class="justify-start"
-            @click="mobileNavOpen = false"
+            @click="() => { mobileNavOpen = false }"
           />
           <UButton
             to="/#teoria"
@@ -69,7 +69,7 @@
             icon="i-lucide-book-open"
             label="Teoria"
             class="justify-start"
-            @click="mobileNavOpen = false"
+            @click="() => { mobileNavOpen = false }"
           />
           <UButton
             to="/#algorytm"
@@ -78,7 +78,7 @@
             icon="i-lucide-route"
             label="Algorytm"
             class="justify-start"
-            @click="mobileNavOpen = false"
+            @click="() => { mobileNavOpen = false }"
           />
           <UButton
             to="/#faq"
@@ -87,7 +87,7 @@
             icon="i-lucide-circle-help"
             label="FAQ"
             class="justify-start"
-            @click="mobileNavOpen = false"
+            @click="() => { mobileNavOpen = false }"
           />
 
           <USeparator class="mt-auto mb-1" />
@@ -149,7 +149,8 @@ const title = 'Logarytm dyskretny (DLP) — Baby-step Giant-step'
 const description = 'Edukacyjne narzędzie do obliczania logarytmu dyskretnego (DLP) z wizualizacją krok po kroku algorytmu Baby-step Giant-step.'
 
 const route = useRoute()
-const canonicalPath = computed(() => (route.path || '/'))
+const siteConfig = useSiteConfig()
+const canonicalUrl = computed(() => new URL(route.path || '/', siteConfig.url).toString())
 
 useHead({
   meta: [
@@ -161,8 +162,7 @@ useHead({
   ],
   link: [
     { rel: 'icon', href: '/favicon.svg' },
-    // Relative canonical (works in dev + static hosting without knowing base URL)
-    { rel: 'canonical', href: canonicalPath.value }
+    { rel: 'canonical', href: canonicalUrl.value }
   ],
   htmlAttrs: {
     lang: 'pl'
